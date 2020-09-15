@@ -1,12 +1,9 @@
-import pygame
-
-
-class piece:
-    def __init__(self, type):
+class Piece:
+    def __init__(self, chance):
         self.show = False
         self.number = None
         self.flagged = False
-        if type < 9:
+        if chance < 9:
             self.type = 1  # Normal
         else:
             self.type = 0  # Mine

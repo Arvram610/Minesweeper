@@ -1,6 +1,6 @@
 import pygame
 import random
-from .Piece import piece
+from .Piece import Piece
 from .constants import WIDTH, ROWS, COLS, SQSY, SQSX, GRAY, BLACK, BOMB, BLUE, PADDING, NUMBERS, FLAG
 
 """ Tells the piece to show itself """
@@ -33,15 +33,16 @@ class Board:
     def __init__(self):
         self.board = []
         self.make_board()
-        self.give_number()
 
     """ Makes the board array and puts in the pieces """
 
     def make_board(self):
+        self.board = []
         for row in range(ROWS):
             self.board.append([])
             for col in range(COLS):
-                self.board[row].append(piece(random.randint(0, 10)))
+                self.board[row].append(Piece(random.randint(0, 10)))
+        self.give_number()
 
     """ Checking all boxes in a 3x3 radius """
 

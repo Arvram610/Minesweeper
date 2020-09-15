@@ -1,6 +1,7 @@
 import pygame
-from modules.constants import WIDTH, HEIGHT, SQSX, SQSY
+
 from modules.Board import Board, show_piece, flag_piece, unflag_piece
+from modules.constants import WIDTH, HEIGHT, SQSX, SQSY
 
 
 def main():
@@ -9,7 +10,7 @@ def main():
     WIN = pygame.display.set_mode((HEIGHT, WIDTH))
     running = True
     board = Board()
-
+    turn = 0
     """Initialise main loop"""
     while running:
 
@@ -19,12 +20,26 @@ def main():
                 running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 """ Checks left mouse button """
                 if pygame.mouse.get_pressed()[0]:
                     x, y = pygame.mouse.get_pos()
-                    piece = board.get_piece(int(x//SQSX), int(y//SQSY))
+                    piece = board.get_piece(int(x // SQSX), int(y // SQSY))
+                    if not piece.type or piece.number != 0:
+                        if not turn:
+                            makeboard = True
+                            while makeboard:
+                                board.make_board()
+                                piece = board.get_piece(int(x // SQSX), int(y // SQSY))
+                                if piece.type and not piece.number:
+                                    makeboard = False
+                                    show_piece(piece)
+                                    turn = 1
+
                     if not piece.flagged:
+                        turn = 1
                         show_piece(piece)
+
                         if not piece.type:
                             running = False
 
