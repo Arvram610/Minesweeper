@@ -27,12 +27,12 @@ def main():
                     piece = board.get_piece(int(x // SQSX), int(y // SQSY))
                     if not piece.type or piece.number != 0:
                         if not turn:
-                            makeboard = True
-                            while makeboard:
+                            Start_Loop = True
+                            while Start_Loop:
                                 board.make_board()
                                 piece = board.get_piece(int(x // SQSX), int(y // SQSY))
                                 if piece.type and not piece.number:
-                                    makeboard = False
+                                    Start_Loop = False
                                     show_piece(piece)
                                     turn = 1
 
