@@ -1,7 +1,7 @@
 import pygame
 import random
 from .Piece import Piece
-from .constants import WIDTH, ROWS, COLS, SQSY, SQSX, GRAY, BLACK, BOMB, BLUE, PADDING, NUMBERS, FLAG
+from .constants import WIDTH, ROWS, COLS, SQSY, SQSX, GRAY, BLACK, BOMB, BLUE, PADDING, NUMBERS, FLAG, BOMBS
 
 """ Tells the piece to show itself """
 
@@ -34,6 +34,17 @@ class Board:
         self.board = []
         self.make_board()
 
+    """ Puts set amount of mines on board """
+
+    def generate_mines(self):
+        for bomb in range(BOMBS):
+            run = True
+            while run:
+                piece = self.get_piece(random.randint(0, COLS-1), random.randint(0, ROWS-1))
+                if piece.type == 1:
+                    piece.type = 0
+                    run = False
+
     """ Makes the board array and puts in the pieces """
 
     def make_board(self):
@@ -41,7 +52,9 @@ class Board:
         for row in range(ROWS):
             self.board.append([])
             for col in range(COLS):
-                self.board[row].append(Piece(random.randint(0, 10)))
+                self.board[row].append(Piece())
+
+        self.generate_mines()
         self.give_number()
 
     """ Checking all boxes in a 3x3 radius """

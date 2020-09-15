@@ -4,10 +4,9 @@ pygame.init()
 
 
 """Simple Setup"""
-difficulty = 50  # 1 to 100
-ROWS = 5  # How many rows that will display on board
+difficulty = 100  # 1 to 100
+ROWS = 20  # How many rows that will display on board
 screensize = 500  # in pixels
-
 
 
 """Defining colours"""
@@ -27,18 +26,18 @@ GRAYISH = (200, 200, 200)
 
 WIDTH = screensize
 HEIGHT = WIDTH
-COLS = ROWS
+COLS = 20
 SQSY = HEIGHT / ROWS
 SQSX = WIDTH / COLS
 
 
 """Some Settings"""
-BOMBS = (ROWS*WIDTH)/(100-difficulty)
+BOMBS = difficulty
 
 
 """Loading Bomb image"""
 BOMB = pygame.image.load("assets/bomb.png")
-PADDING = 10
+PADDING = 2
 BOMB = pygame.transform.scale(BOMB, (int(SQSX - PADDING * 2), int(SQSY - PADDING * 2)))
 
 """Loading Flag image"""
