@@ -2,7 +2,16 @@ import pygame
 
 pygame.init()
 
+
+"""Simple Setup"""
+difficulty = 50  # 1 to 100
+ROWS = 5  # How many rows that will display on board
+screensize = 500  # in pixels
+
+
+
 """Defining colours"""
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (122, 122, 122)
@@ -15,12 +24,17 @@ TURQUOISE = (64, 224, 208)
 GRAYISH = (200, 200, 200)
 
 """Setting screen sizes"""
-WIDTH = 500
-HEIGHT = 500
-ROWS = 15
+
+WIDTH = screensize
+HEIGHT = WIDTH
 COLS = ROWS
 SQSY = HEIGHT / ROWS
 SQSX = WIDTH / COLS
+
+
+"""Some Settings"""
+BOMBS = (ROWS*WIDTH)/(100-difficulty)
+
 
 """Loading Bomb image"""
 BOMB = pygame.image.load("assets/bomb.png")
