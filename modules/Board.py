@@ -7,7 +7,8 @@ from .constants import WIDTH, ROWS, COLS, SQSY, SQSX, GRAY, BLACK, BOMB, BLUE, P
 
 
 def show_piece(pieces):
-    pieces.show_piece()
+    if not pieces.flagged:
+        pieces.show_piece()
 
 
 """ Tells the piece to make itself flagged """
@@ -146,9 +147,9 @@ class Board:
                 piece = self.turnlist[0][0]
                 x = self.turnlist[0][1]
                 y = self.turnlist[0][2]
-                if not piece.show:
+                if not piece.show and not piece.flagged:
                     if x >= 1:  # Checks to the left
-                        if self.board[x - 1][y].type:
+                        if self.board[x - 1][y].type and not self.board[x - 1][y].flagged:
                             if not self.board[x - 1][y].number:
                                 self.turn_list(self.board[x - 1][y], x - 1, y)
 
@@ -156,7 +157,7 @@ class Board:
                                 show_piece(self.board[x - 1][y])
 
                     if x + 1 < ROWS:  # Checks to the right
-                        if self.board[x + 1][y].type:
+                        if self.board[x + 1][y].type and not self.board[x + 1][y].flagged:
                             if not self.board[x + 1][y].number:
                                 self.turn_list(self.board[x + 1][y], x + 1, y)
 
@@ -164,7 +165,7 @@ class Board:
                                 show_piece(self.board[x + 1][y])
 
                     if y >= 1:  # Checks up
-                        if self.board[x][y - 1].type:
+                        if self.board[x][y - 1].type and not self.board[x][y - 1].flagged:
                             if not self.board[x][y - 1].number:
                                 self.turn_list(self.board[x][y - 1], x, y - 1)
 
@@ -172,7 +173,7 @@ class Board:
                                 show_piece(self.board[x][y - 1])
 
                     if y + 1 < COLS:  # Checks down
-                        if self.board[x][y + 1].type:
+                        if self.board[x][y + 1].type and not self.board[x][y + 1].flagged:
                             if not self.board[x][y + 1].number:
                                 self.turn_list(self.board[x][y + 1], x, y + 1)
 

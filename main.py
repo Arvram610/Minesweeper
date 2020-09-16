@@ -35,7 +35,7 @@ def main():
                                 if piece.type and not piece.number:
                                     Start_Loop = False
 
-                                    show_piece(piece)
+                                    board.turn_near(piece, int(x // SQSX), int(y // SQSY))
                                     turn = 1
 
                     if not piece.flagged:
