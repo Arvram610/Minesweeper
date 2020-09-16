@@ -2,12 +2,10 @@ import pygame
 
 pygame.init()
 
-
 """Simple Setup"""
-difficulty = 100  # 1 to 100
-ROWS = 20  # How many rows that will display on board
-screensize = 500  # in pixels
-
+difficulty = 50  # 1 to 100
+ROWS = 40  # How many rows that will display on board
+screensize = 1000  # in pixels
 
 """Defining colours"""
 

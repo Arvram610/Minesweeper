@@ -33,15 +33,22 @@ def main():
                                 piece = board.get_piece(int(x // SQSX), int(y // SQSY))
                                 if piece.type and not piece.number:
                                     Start_Loop = False
+
                                     show_piece(piece)
                                     turn = 1
+                                    board.add_to_turned(piece)
 
                     if not piece.flagged:
-                        turn = 1
-                        show_piece(piece)
 
-                        if not piece.type:
-                            running = False
+                        turn = 1
+                        if piece.type and not piece.number:
+                            board.turn_near(piece, int(x // SQSX), int(y // SQSY))
+                        else:
+                            show_piece(piece)
+                            board.add_to_turned(piece)
+
+                            if not piece.type:
+                                running = False
 
                 """ Checks right mouse button """
                 if pygame.mouse.get_pressed()[2]:

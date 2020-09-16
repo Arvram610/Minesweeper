@@ -32,6 +32,7 @@ class Board:
 
     def __init__(self):
         self.board = []
+        self.turned_pieces = []
         self.make_board()
 
     """ Puts set amount of mines on board """
@@ -131,3 +132,54 @@ class Board:
 
                 if self.board[row][col].flagged:
                     win.blit(FLAG, (row * SQSX + PADDING, col * SQSY + PADDING))
+
+    """Marks itself as turned"""
+
+    def add_to_turned(self, piece):
+        self.turned_pieces.append(piece)
+
+    """Makes it so if its a blank piece it opens up close by pieces6"""
+
+    def turn_near(self, piece, x, y):
+        if piece.type and not piece.number:
+            show_piece(piece)
+            self.add_to_turned(piece)
+            if x >= 1:
+                if not self.board[x - 1][y] in self.turned_pieces:  # Checks to the left
+                    if self.board[x - 1][y].type:
+                        if not self.board[x - 1][y].number:
+                            self.turn_near(self.board[x - 1][y], x - 1, y)
+
+                        if self.board[x - 1][y].number > 0.5:
+                            self.add_to_turned(self.board[x - 1][y])
+                            show_piece(self.board[x - 1][y])
+
+            if x + 1 < ROWS:
+                if not self.board[x + 1][y] in self.turned_pieces:  # Checks to the right
+                    if self.board[x + 1][y].type:
+                        if not self.board[x + 1][y].number:
+                            self.turn_near(self.board[x + 1][y], x + 1, y)
+
+                        if self.board[x + 1][y].number > 0.5:
+                            self.add_to_turned(self.board[x + 1][y])
+                            show_piece(self.board[x + 1][y])
+
+            if y >= 1:
+                if not self.board[x][y - 1] in self.turned_pieces:  # Checks up
+                    if self.board[x][y - 1].type:
+                        if not self.board[x][y - 1].number:
+                            self.turn_near(self.board[x][y - 1], x, y - 1)
+
+                        if self.board[x][y - 1].number > 0.5:
+                            self.add_to_turned(self.board[x][y - 1])
+                            show_piece(self.board[x][y - 1])
+
+            if y - 1 <= COLS:
+                if not self.board[x][y + 1] in self.turned_pieces:  # Checks down
+                    if self.board[x][y + 1].type:
+                        if not self.board[x][y + 1].number:
+                            self.turn_near(self.board[x][y + 1], x, y + 1)
+
+                        if self.board[x][y + 1].number > 0.5:
+                            self.add_to_turned(self.board[x][y + 1])
+                            show_piece(self.board[x][y + 1])
