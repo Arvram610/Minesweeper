@@ -37,7 +37,6 @@ def main():
 
                                     show_piece(piece)
                                     turn = 1
-                                    board.add_to_turned(piece)
 
                     if not piece.flagged:
 
@@ -46,7 +45,6 @@ def main():
                             board.turn_near(piece, int(x // SQSX), int(y // SQSY))
                         else:
                             show_piece(piece)
-                            board.add_to_turned(piece)
 
                             if not piece.type:
                                 running = False

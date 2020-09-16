@@ -3,8 +3,8 @@ import pygame
 pygame.init()
 
 """Simple Setup"""
-difficulty = 1000  # 1 to 100
-ROWS = 100  # How many rows that will display on board
+difficulty = 20  # 1 to rows * rows
+ROWS = 10  # How many rows that will display on board
 screensize = 1000  # in pixels
 
 """Defining colours"""
@@ -28,19 +28,17 @@ COLS = ROWS
 SQSY = HEIGHT / ROWS
 SQSX = WIDTH / COLS
 
-
 """Some Settings"""
 BOMBS = difficulty
 
-
 """Loading Bomb image"""
 BOMB = pygame.image.load("assets/bomb.png")
-PADDING = 2
-BOMB = pygame.transform.scale(BOMB, (int(SQSX - PADDING * 2), int(SQSY - PADDING * 2)))
+PADDING = 1
+BOMB = pygame.transform.scale(BOMB, (int(SQSX - PADDING), int(SQSY - PADDING)))
 
 """Loading Flag image"""
 FLAG = pygame.image.load("assets/flag.png")
-FLAG = pygame.transform.scale(FLAG, (int(SQSX - PADDING * 2), int(SQSY - PADDING * 2)))
+FLAG = pygame.transform.scale(FLAG, (int(SQSX - PADDING), int(SQSY - PADDING)))
 
 """Making list of all number"""
 NUMBERS = []
@@ -49,4 +47,4 @@ for N in range(9):
     myFont = pygame.font.Font('freesansbold.ttf', 999)
     NUMBERS.append(myFont.render(str(N), 1, colours[N]))
 for position, number in enumerate(NUMBERS):
-    NUMBERS[position] = pygame.transform.scale(number, (int(SQSX - PADDING * 2), int(SQSY - PADDING * 2)))
+    NUMBERS[position] = pygame.transform.scale(number, (int(SQSX - PADDING), int(SQSY - PADDING)))
