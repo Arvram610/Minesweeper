@@ -174,7 +174,7 @@ class Board:
                             self.add_to_turned(self.board[x][y - 1])
                             show_piece(self.board[x][y - 1])
 
-            if y - 1 <= COLS:
+            if y + 1 < COLS:
                 if not self.board[x][y + 1] in self.turned_pieces:  # Checks down
                     if self.board[x][y + 1].type:
                         if not self.board[x][y + 1].number:

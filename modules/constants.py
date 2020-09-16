@@ -3,8 +3,8 @@ import pygame
 pygame.init()
 
 """Simple Setup"""
-difficulty = 50  # 1 to 100
-ROWS = 40  # How many rows that will display on board
+difficulty = 1000  # 1 to 100
+ROWS = 100  # How many rows that will display on board
 screensize = 1000  # in pixels
 
 """Defining colours"""
@@ -24,7 +24,7 @@ GRAYISH = (200, 200, 200)
 
 WIDTH = screensize
 HEIGHT = WIDTH
-COLS = 20
+COLS = ROWS
 SQSY = HEIGHT / ROWS
 SQSX = WIDTH / COLS
 

@@ -11,6 +11,7 @@ def main():
     running = True
     board = Board()
     turn = 0
+
     """Initialise main loop"""
     while running:
 
