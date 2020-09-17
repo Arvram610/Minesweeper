@@ -50,7 +50,7 @@ def main():
                                 running = False
 
                 """ Checks right mouse button """
-                if pygame.mouse.get_pressed()[2]:
+                if pygame.mouse.get_pressed()[2] and turn:
                     x, y = pygame.mouse.get_pos()
                     piece = board.get_piece(int(x // SQSX), int(y // SQSY))
                     if not piece.flagged and not piece.show:
